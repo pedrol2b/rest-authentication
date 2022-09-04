@@ -1,0 +1,44 @@
+{
+  "name": "inventory-management-system",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "nodemon src/server.ts",
+    "pretty": "prettier --write \"./**/*.{js,jsx,ts,tsx,json}\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pedrol2b/inventory-management-system.git"
+  },
+  "author": "Pedro Bueno <pedrolbb.e@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/pedrol2b/inventory-management-system#readme",
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "@types/jsonwebtoken": "^8.5.9",
+    "@types/morgan": "^1.9.3",
+    "@types/multer": "^1.4.7",
+    "@types/node": "^18.7.14",
+    "@types/nodemailer": "^6.4.5",
+    "nodemon": "^2.0.19",
+    "prettier": "^2.7.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.2"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "firebase-admin": "^11.0.1",
+    "helmet": "^6.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.5.4",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.7.8",
+    "nodemailer-pug-engine": "^2.0.1",
+    "pug": "^3.0.2"
+  }
+}
