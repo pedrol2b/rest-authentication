@@ -16,7 +16,7 @@ const sender = createTransport(<SendMailOptions>{
 sender.use(
   'compile',
   pugEngine({
-    templateDir: resolve(__dirname, '../../res/mail/'),
+    templateDir: resolve(__dirname, '../res/mail/'),
     pretty: true,
   })
 )

@@ -1,7 +1,7 @@
 import multer, { FileFilterCallback } from 'multer'
 import { Request } from 'express'
 
-export default {
+export default multer({
   storage: multer.memoryStorage(),
   limits: {
     fileSize: 2 * 1024 * 1024,
@@ -12,4 +12,4 @@ export default {
     if (allowedMimes.includes(file.mimetype)) cb(null, true)
     else cb(new Error('Invalid file type.'))
   },
-}
+})
