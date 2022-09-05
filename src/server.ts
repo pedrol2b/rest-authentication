@@ -4,7 +4,7 @@ import cors from 'cors'
 import express from 'express'
 import helmet from 'helmet'
 import morgan from 'morgan'
-import { router } from './routes'
+import router from './routes'
 
 const app = express()
 app.enable('trust proxy')

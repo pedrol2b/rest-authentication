@@ -47,7 +47,7 @@ const cdnUpload: Middleware = (req, res, next) => {
   stream.on('finish', async () => {
     await bucketFile.makePublic()
 
-    req.file.firebaseUrl = `${process.env.STORAGE_GOOGLEAPI}${storageBucket}/${filename}`
+    req.file.cloudStorageURL = `${process.env.STORAGE_GOOGLEAPI}${storageBucket}/${filename}`
     next()
   })
 
