@@ -4,7 +4,7 @@ import { createTransport, SendMailOptions } from 'nodemailer'
 import { pugEngine } from 'nodemailer-pug-engine'
 import { resolve } from 'path'
 
-const sender = createTransport(<SendMailOptions>{
+const transporter = createTransport(<SendMailOptions>{
   host: process.env.SMTP_HOST,
   port: process.env.SMTP_PORT,
   auth: {
@@ -13,12 +13,12 @@ const sender = createTransport(<SendMailOptions>{
   },
 })
 
-sender.use(
+transporter.use(
   'compile',
   pugEngine({
-    templateDir: resolve(__dirname, '../res/mail/'),
+    templateDir: resolve(__dirname, '../../res/mail/'),
     pretty: true,
   })
 )
 
-export default sender.sendMail.bind(sender)
+export default transporter.sendMail.bind(transporter)
