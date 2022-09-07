@@ -1,7 +1,8 @@
 import { Request, Response } from 'express'
 import userModel from '../models/userModel'
-import createJWT from '../services/jwt/createJWT'
+import JWT from '../services/jwt/index'
 import { Types } from 'mongoose'
+const { jwtSign } = new JWT()
 
 interface UserModel {
   _id: Types.ObjectId
@@ -27,7 +28,7 @@ class SignupController {
       createdUser.password = undefined
 
       res.send({
-        token: createJWT({ _id: createdUser._id }),
+        token: jwtSign({ _id: createdUser._id }),
       })
     } catch (e) {
       res.status(500).send({ error: true, message: 'Internal Server Error' })
