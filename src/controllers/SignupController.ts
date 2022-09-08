@@ -4,16 +4,10 @@ import JWT from '../services/jwt/index'
 import { Types } from 'mongoose'
 const { jwtSign } = new JWT()
 import StorageUpload from '../utils/StorageUpload'
-import transporter from '../services/smtp/index'
-import { Options } from 'nodemailer/lib/mailer'
 
 interface UserModel {
   _id: Types.ObjectId
   password: string | undefined
-}
-
-interface Transporter extends Options {
-  template: string
 }
 
 class SignupController {
@@ -33,30 +27,6 @@ class SignupController {
 
       const createdUser: UserModel = await userModel.create({ username, email, name, password, avatar })
       createdUser.password = undefined
-
-      const code_numbers = []
-      const now = new Date()
-      for (let i = 0; i < 8; i++) code_numbers.push(Math.floor(Math.random() * 10))
-      now.setMinutes(now.getMinutes() + 30)
-      const code = code_numbers.join('')
-
-      await userModel.findByIdAndUpdate(createdUser._id, {
-        $set: {
-          emailVerificationCode: code,
-          emailVerificationExpiresIn: now,
-        },
-      })
-
-      transporter(
-        <Transporter>{
-          to: email,
-          from: process.env.SMTP_FROM,
-          subject: 'Email Address Confirmation',
-          template: 'email_confirmation',
-          ctx: { code },
-        },
-        (err) => {}
-      )
 
       res.send({
         token: jwtSign({ _id: createdUser._id }),
