@@ -1,14 +1,8 @@
 import { Request, Response } from 'express'
-import userModel from '../models/userModel'
+import userModel, { UserModel } from '../models/userModel'
 import JWT from '../services/jwt/index'
-import { Types } from 'mongoose'
 const { jwtSign } = new JWT()
 import StorageUpload from '../utils/StorageUpload'
-
-interface UserModel {
-  _id: Types.ObjectId
-  password: string | undefined
-}
 
 class SignupController {
   async handle(req: Request, res: Response): Promise<any> {

@@ -1,7 +1,23 @@
 import mongoose from '../database/index'
+import { Types, Schema, Document } from 'mongoose'
 import bcrypt from 'bcryptjs'
 
-const Schema = new mongoose.Schema(
+export interface UserModel extends Document {
+  _id: Types.ObjectId
+  username: string
+  email: string
+  name: string
+  password: string | undefined
+  status: string
+  avatar: string
+  emailVerificationCode: string
+  emailVerificationExpiresIn: Date
+  passwordResetToken: string
+  passwordResetExpiresIn: Date
+  createdAt: Date
+}
+
+const UserSchema: Schema = new mongoose.Schema(
   {
     username: {
       type: String,
@@ -57,10 +73,10 @@ const Schema = new mongoose.Schema(
   { collection: 'user' }
 )
 
-Schema.pre('save', async function (next): Promise<void> {
+UserSchema.pre('save', async function (next): Promise<void> {
   const hash = await bcrypt.hash(this.password, 10)
   this.password = hash
   next()
 })
 
-export default mongoose.model('User', Schema)
+export default mongoose.model<UserModel>('User', UserSchema)
