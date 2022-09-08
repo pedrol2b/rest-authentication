@@ -25,14 +25,13 @@ initializeApp({
 
 const bucket = storage().bucket()
 
-interface Middleware {
-  (req: any, res: any, next: any): void
+interface File extends Express.Multer.File {
+  cloudStorageURL: string
 }
 
-const cdnUpload: Middleware = (req, res, next) => {
-  if (!req.file) return next()
+export default function (file: File): File | void {
+  if (!file) return
 
-  const { file } = req
   const filename = `${Date.now()}-${randomBytes(16).toString('hex')}.${file.originalname.split('.').pop()}`
 
   const bucketFile = bucket.file(filename)
@@ -47,11 +46,9 @@ const cdnUpload: Middleware = (req, res, next) => {
   stream.on('finish', async () => {
     await bucketFile.makePublic()
 
-    req.file.cloudStorageURL = `${process.env.STORAGE_GOOGLEAPI}${storageBucket}/${filename}`
-    next()
+    file.cloudStorageURL = `${process.env.STORAGE_GOOGLEAPI}${storageBucket}/${filename}`
+    return file
   })
 
   stream.end(file.buffer)
 }
-
-export default cdnUpload

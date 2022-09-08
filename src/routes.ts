@@ -5,10 +5,8 @@ const signupController = new SignupController()
 
 import Multer from './middlewares/Multer'
 
-import cdnUpload from './utils/cdnUpload'
-
 const router = Router()
 
-router.post('/signup', Multer.single('avatar'), cdnUpload, signupController.handle)
+router.post('/signup', Multer.single('avatar'), signupController.handle)
 
 export default router

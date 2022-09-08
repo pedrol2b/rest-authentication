@@ -3,6 +3,7 @@ import userModel from '../models/userModel'
 import JWT from '../services/jwt/index'
 import { Types } from 'mongoose'
 const { jwtSign } = new JWT()
+import StorageUpload from '../utils/StorageUpload'
 
 interface UserModel {
   _id: Types.ObjectId
@@ -21,7 +22,7 @@ class SignupController {
 
       if (password.length < 4) return res.status(400).send({ error: true, message: 'This password is very weak' })
 
-      const file = <any>req.file
+      const file = StorageUpload(<any>req.file)
       const avatar = file ? file.cloudStorageURL : undefined
 
       const createdUser: UserModel = await userModel.create({ username, email, name, password, avatar })
