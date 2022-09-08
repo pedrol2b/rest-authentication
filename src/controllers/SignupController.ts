@@ -22,7 +22,7 @@ class SignupController {
 
       if (password.length < 4) return res.status(400).send({ error: true, message: 'This password is very weak' })
 
-      const file = StorageUpload(<any>req.file)
+      const file = await StorageUpload(<any>req.file)
       const avatar = file ? file.cloudStorageURL : undefined
 
       const createdUser: UserModel = await userModel.create({ username, email, name, password, avatar })

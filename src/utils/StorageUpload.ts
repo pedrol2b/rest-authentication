@@ -29,26 +29,28 @@ interface File extends Express.Multer.File {
   cloudStorageURL: string
 }
 
-export default function (file: File): File | void {
-  if (!file) return
+export default function (file: File): Promise<File | void> {
+  return new Promise((resolve, reject) => {
+    if (!file) resolve(undefined)
 
-  const filename = `${Date.now()}-${randomBytes(16).toString('hex')}.${file.originalname.split('.').pop()}`
+    const filename = `${Date.now()}-${randomBytes(16).toString('hex')}.${file.originalname.split('.').pop()}`
 
-  const bucketFile = bucket.file(filename)
-  const stream = bucketFile.createWriteStream({
-    metadata: {
-      contentType: file.mimetype,
-    },
+    const bucketFile = bucket.file(filename)
+    const stream = bucketFile.createWriteStream({
+      metadata: {
+        contentType: file.mimetype,
+      },
+    })
+
+    stream.on('error', (err) => console.error(err))
+
+    stream.on('finish', async () => {
+      await bucketFile.makePublic()
+
+      file.cloudStorageURL = `${process.env.STORAGE_GOOGLEAPI}${storageBucket}/${filename}`
+      resolve(file)
+    })
+
+    stream.end(file.buffer)
   })
-
-  stream.on('error', (err) => console.error(err))
-
-  stream.on('finish', async () => {
-    await bucketFile.makePublic()
-
-    file.cloudStorageURL = `${process.env.STORAGE_GOOGLEAPI}${storageBucket}/${filename}`
-    return file
-  })
-
-  stream.end(file.buffer)
 }
