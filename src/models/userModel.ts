@@ -23,6 +23,11 @@ const Schema = new mongoose.Schema(
       required: true,
       select: false,
     },
+    status: {
+      type: String,
+      enum: ['Pending', 'Active'],
+      default: 'Pending',
+    },
     avatar: {
       type: String,
       default:
