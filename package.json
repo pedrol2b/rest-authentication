@@ -2,7 +2,7 @@
   "name": "inventory-management-system",
   "version": "1.0.0",
   "scripts": {
-    "dev": "nodemon src/server.ts",
+    "dev": "nodemon --files src/server.ts",
     "pretty": "prettier --write \"./**/*.{js,jsx,ts,tsx,json}\""
   },
   "repository": {
