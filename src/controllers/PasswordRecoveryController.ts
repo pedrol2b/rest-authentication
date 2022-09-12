@@ -1,12 +1,7 @@
 import { Request, Response } from 'express'
 import userModel, { UserModel } from '../models/userModel'
 import { randomBytes } from 'crypto'
-import transporter from '../services/smtp/index'
-import { Options } from 'nodemailer/lib/mailer'
-
-interface Transporter extends Options {
-  template: string
-}
+import transporter, { Transporter } from '../services/smtp/index'
 
 class PasswordRecoveryController {
   async handle(req: Request, res: Response): Promise<any> {

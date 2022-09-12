@@ -42,8 +42,6 @@ export default function (file: File): Promise<File | void> {
       },
     })
 
-    stream.on('error', (err) => console.error(err))
-
     stream.on('finish', async () => {
       await bucketFile.makePublic()
 

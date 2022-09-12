@@ -3,6 +3,7 @@ import userModel, { UserModel } from '../models/userModel'
 import JWT from '../services/jwt/index'
 const { jwtSign } = new JWT()
 import StorageUpload from '../utils/StorageUpload'
+import sendConfirmationCode from '../services/mail/sendConfirmationCode'
 
 class SignupController {
   async handle(req: Request, res: Response): Promise<any> {
@@ -21,6 +22,8 @@ class SignupController {
 
       const createdUser: UserModel = await userModel.create({ username, email, name, password, avatar })
       createdUser.password = undefined
+
+      await sendConfirmationCode(createdUser._id, email)
 
       res.send({
         token: jwtSign({ _id: createdUser._id }),
