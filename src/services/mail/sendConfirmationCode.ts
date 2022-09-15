@@ -4,7 +4,7 @@ import { Types } from 'mongoose'
 import userModel from '../../models/userModel'
 import transporter, { Transporter } from '../smtp/index'
 
-export default async function (user_id: Types.ObjectId | string, email: string): Promise<void> {
+export default async function (user_id: Types.ObjectId | string, email: string | undefined): Promise<void> {
   const codeNumVet = []
   const now = new Date()
 
