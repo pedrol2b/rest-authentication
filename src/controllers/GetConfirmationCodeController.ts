@@ -9,7 +9,7 @@ class GetConfirmationCodeController {
     try {
       const User: UserModel | null = await userModel.findById(user_id)
 
-      await sendConfirmationCode(user_id, User?.email)
+      sendConfirmationCode(user_id, User?.email)
       res.send()
     } catch (e) {
       res.status(500).send({ error: true, message: 'Internal Server Error' })

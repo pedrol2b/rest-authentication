@@ -14,7 +14,7 @@ class ChangeEmailController {
         },
       })
 
-      await sendConfirmationCode(user_id, email)
+      sendConfirmationCode(user_id, email)
       res.send()
     } catch (e) {
       res.status(500).send({ error: true, message: 'Internal Server Error' })

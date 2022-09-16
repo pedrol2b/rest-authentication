@@ -2,13 +2,18 @@ import mongoose from '../database/index'
 import { Types, Schema, Document } from 'mongoose'
 import bcrypt from 'bcryptjs'
 
+enum EmailActivationStatus {
+  Pending = 'Pending',
+  Active = 'Active',
+}
+
 export interface UserModel extends Document {
   _id: Types.ObjectId
   username: string
   email: string
   name: string
   password: string | undefined
-  status: string
+  emailActivationStatus: string
   avatar: string
   emailVerificationCode: string
   emailVerificationExpiresIn: Date
@@ -39,10 +44,10 @@ const UserSchema: Schema = new mongoose.Schema(
       required: true,
       select: false,
     },
-    status: {
+    emailActivationStatus: {
       type: String,
-      enum: ['Pending', 'Active'],
-      default: 'Pending',
+      enum: Object.values(EmailActivationStatus),
+      default: EmailActivationStatus.Pending,
     },
     avatar: {
       type: String,

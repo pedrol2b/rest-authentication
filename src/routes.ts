@@ -5,6 +5,7 @@ import PasswordRecoveryController from './controllers/PasswordRecoveryController
 import PasswordResetController from './controllers/PasswordResetController'
 import ChangeEmailController from './controllers/ChangeEmailController'
 import GetConfirmationCodeController from './controllers/GetConfirmationCodeController'
+import EmailVerificationController from './controllers/EmailVerificationController'
 
 const signupController = new SignupController()
 const signinController = new SigninController()
@@ -12,6 +13,7 @@ const passwordRecoveryController = new PasswordRecoveryController()
 const passwordResetController = new PasswordResetController()
 const changeEmailController = new ChangeEmailController()
 const getConfirmationCodeController = new GetConfirmationCodeController()
+const emailVerificationController = new EmailVerificationController()
 
 import ensureAuthenticated from './middlewares/ensureAuthenticated'
 import Multer from './middlewares/Multer'
@@ -24,5 +26,6 @@ router.post('/password_recovery', passwordRecoveryController.handle)
 router.post('/password_reset', passwordResetController.handle)
 router.post('/email_change', ensureAuthenticated, changeEmailController.handle)
 router.get('/email_verify', ensureAuthenticated, getConfirmationCodeController.handle)
+router.post('/email_verify', ensureAuthenticated, emailVerificationController.handle)
 
 export default router

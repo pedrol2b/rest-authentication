@@ -23,7 +23,7 @@ class SignupController {
       const createdUser: UserModel = await userModel.create({ username, email, name, password, avatar })
       createdUser.password = undefined
 
-      await sendConfirmationCode(createdUser._id, email)
+      sendConfirmationCode(createdUser._id, email)
 
       res.send({
         token: jwtSign({ _id: createdUser._id }),
