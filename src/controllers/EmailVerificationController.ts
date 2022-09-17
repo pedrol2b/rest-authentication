@@ -26,8 +26,6 @@ class EmailVerificationController {
 
       res.send()
     } catch (e) {
-      console.error(e)
-
       res.status(500).send({ error: true, message: 'Internal Server Error' })
     }
   }

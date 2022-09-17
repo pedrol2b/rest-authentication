@@ -11,6 +11,7 @@ class ChangeEmailController {
       await userModel.findByIdAndUpdate(user_id, {
         $set: {
           email,
+          emailActivationStatus: 'Pending',
         },
       })
 
