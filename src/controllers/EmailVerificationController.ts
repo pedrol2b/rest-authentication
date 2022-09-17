@@ -18,8 +18,11 @@ class EmailVerificationController {
       const now = new Date()
       if (now > User.emailVerificationExpiresIn) return res.status(400).send({ error: true, message: 'Code expired' })
 
-      User.emailActivationStatus = 'Active'
-      await User.save()
+      await userModel.findByIdAndUpdate(user_id, {
+        $set: {
+          emailActivationStatus: 'Active',
+        },
+      })
 
       res.send()
     } catch (e) {
