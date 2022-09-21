@@ -10,11 +10,12 @@
     "pretty": "prettier --write \"./**/*.{js,jsx,ts,tsx,json}\""
   },
   "dependencies": {
+    "@chakra-ui/icons": "^2.0.10",
     "@chakra-ui/react": "^2.3.4",
-    "@emotion/react": "^11",
-    "@emotion/styled": "^11",
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
     "cookies-next": "^2.1.1",
-    "framer-motion": "^6",
+    "framer-motion": "^7.3.6",
     "next": "12.3.0",
     "next-images": "^1.8.4",
     "polished": "^4.2.2",

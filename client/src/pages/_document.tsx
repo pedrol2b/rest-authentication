@@ -1,5 +1,7 @@
 import React from 'react'
+import { ColorModeScript } from '@chakra-ui/react'
 import NextDocument, { Head, Html, Main, NextScript } from 'next/document'
+import Theme from '../styles/themeConfig'
 
 export default class Document extends NextDocument {
   render() {
@@ -11,6 +13,7 @@ export default class Document extends NextDocument {
           <link rel="preconnect" href="https://fonts.gstatic.com" />
         </Head>
         <body>
+          <ColorModeScript initialColorMode={Theme.config.initialColorMode} />
           <Main />
           <NextScript />
         </body>

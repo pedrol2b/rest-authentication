@@ -1,8 +1,7 @@
-import React from 'react'
-import { NextPage } from 'next'
+import React, { FC } from 'react'
 import Head from 'next/head'
 
-const Home: NextPage = () => {
+const Home: FC = () => {
   return (
     <>
       <Head>
