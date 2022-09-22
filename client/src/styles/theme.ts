@@ -1,11 +1,22 @@
 import { extendTheme } from '@chakra-ui/react'
 
 const config = {
-  styles: {
-    global: {
-      body: {},
-    },
+  initialColorMode: 'dark',
+  useSystemColorMode: false,
+}
+
+const styles = {
+  global: () => ({}),
+}
+
+const components = {
+  Drawer: {
+    baseStyle: () => ({}),
   },
 }
 
-export default extendTheme(config)
+export default extendTheme({
+  components,
+  styles,
+  config,
+})

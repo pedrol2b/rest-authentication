@@ -1,12 +1,17 @@
 import React, { FC } from 'react'
-import { AppProps } from 'next/app'
-import { ChakraProvider } from '@chakra-ui/react'
-import Theme from '../styles/theme'
+import type { AppProps } from 'next/app'
+import { ChakraProvider, ColorModeProvider } from '@chakra-ui/react'
+import { ThemeProvider as EmotionProvider } from '@emotion/react'
 
-const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
+import theme from '../styles/theme'
+
+const MyApp: FC<AppProps> = ({ Component, pageProps }: AppProps) => {
   return (
-    <ChakraProvider theme={Theme}>
-      <Component {...pageProps} />
+    <ChakraProvider resetCSS theme={theme}>
+      <ColorModeProvider options={theme.config} />
+      <EmotionProvider theme={theme}>
+        <Component {...pageProps} />
+      </EmotionProvider>
     </ChakraProvider>
   )
 }
