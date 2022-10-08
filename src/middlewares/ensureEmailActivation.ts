@@ -6,6 +6,7 @@ export default async function (req: Request, res: Response, next: NextFunction) 
 
   const User: UserModel | null = await userModel.findOne({ _id: user_id })
 
-  if (User?.status === 'Pending') return res.status(401).send({ error: true, message: 'Pending confirmation' })
+  if (User?.emailActivationStatus === 'Pending')
+    return res.status(401).send({ error: true, message: 'Pending confirmation' })
   next()
 }

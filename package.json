@@ -1,5 +1,5 @@
 {
-  "name": "inventory-management-system",
+  "name": "express-auth-jwt",
   "version": "1.0.0",
   "scripts": {
     "dev": "nodemon --files src/server.ts",
@@ -7,11 +7,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pedrol2b/inventory-management-system.git"
+    "url": "git+https://github.com/pedrol2b/express-auth-jwt.git"
   },
   "author": "Pedro Bueno <pedrolbb.e@gmail.com>",
   "license": "MIT",
-  "homepage": "https://github.com/pedrol2b/inventory-management-system#readme",
+  "homepage": "https://github.com/pedrol2b/express-auth-jwt",
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
     "@types/cors": "^2.8.12",
