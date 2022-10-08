@@ -1,6 +1,6 @@
 # express-auth-jwt
 
-> ⚠️ You'll need to provide your own ".env" follow the ".env.example" for reference
+> ⚠️ You'll need to provide your own ".env" follow the ".env.example" for reference </br>You also need to provide your own firebase-adminsdk.json file
 
 🔥 Authentication API with JWT made in **TypeScript** with **Express** and **MongoDB**
 
