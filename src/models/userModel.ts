@@ -51,8 +51,7 @@ const UserSchema: Schema = new mongoose.Schema(
     },
     avatar: {
       type: String,
-      default:
-        'https://storage.googleapis.com/inventory-management-sys-a9cc0.appspot.com/1662349783980-1dd56510056c47992120185a2fb0515a.png',
+      default: 'https://i.imgur.com/Noy031h.png',
     },
     emailVerificationCode: {
       type: String,
