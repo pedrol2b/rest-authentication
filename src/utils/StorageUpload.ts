@@ -3,7 +3,7 @@ dotenv.config()
 import { initializeApp } from 'firebase-admin/app'
 import { credential, storage, ServiceAccount } from 'firebase-admin'
 import { randomBytes } from 'crypto'
-import serviceAccount from '../firebase-adminsdk.json'
+import serviceAccount from '../../firebase-adminsdk.json'
 
 const storageBucket = process.env.STORAGE_BUCKET
 
